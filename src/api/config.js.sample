@@ -1,0 +1,6 @@
+export default {
+  APP_NAME: 'app name',
+  API_KEY: 'api key',
+  SECRET: 'secret key',
+  REGISTERED_TO: 'some user',
+};
