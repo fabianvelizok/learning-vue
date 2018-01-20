@@ -5,8 +5,5 @@ export default function getArtists (country) {
 
   return fetch(url)
     .then(response => response.json())
-    .then(json => json.topartists.artist)
-    .catch((error) => {
-      console.error(error);
-    });
+    .then(json => json.topartists.artist);
 };

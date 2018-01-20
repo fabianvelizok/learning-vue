@@ -17,14 +17,13 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  li.artist {
-    margin: 0;
-    float: left;
-    width 50%;
-    padding: 10px;
-  }
+  li.artist
+    margin: 0
+    float: left
+    width 50%
+    padding: 10px
 
-  .artist-container {
-    border: 1px solid #cfcfcf;
-  }
+    .artist-container
+      border: 1px solid #cfcfcf
+
 </style>
