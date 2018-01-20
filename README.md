@@ -1,6 +1,6 @@
 # platzimusic
 
-> A Vue.js project
+> Get top artists from last.fm API using Vue.js
 
 ## Build Setup
 
