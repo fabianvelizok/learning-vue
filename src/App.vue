@@ -2,12 +2,19 @@
   #app
     img(src='./assets/logo.png')
     h1 Platzi music
+    select(v-model="selectedCountry")
+      option(v-for="country in countries" v-bind:value="country.value") {{country.name}}
     ul
-      li(v-for="artist in artists") {{artist.name}}
+      artist(
+        v-for="artist in artists"
+        v-bind:artist="artist"
+        v-bind:key="artist.mbind"
+      )
 </template>
 
 <script>
 
+import Artist from './components/Artist.vue';
 import getArtists from './api';
 
 export default {
@@ -15,19 +22,41 @@ export default {
   data () {
     return {
       artists: [],
+      countries: [
+        { name: 'Argentina', value: 'argentina'},
+        { name: 'Colombia', value: 'colombia'},
+        { name: 'España', value: 'spain'},
+      ],
+      selectedCountry: 'argentina',
     }
   },
-  mounted: function() {
-    let self = this;
+  components: {
+    Artist,
+  },
+  mounted () {
+    this.refreshArtists();
+  },
+  methods: {
+    refreshArtists() {
+      let self = this;
 
-    getArtists().then((artists) => {
-      self.artists = artists;
-    });
+      getArtists(this.selectedCountry).then((artists) => {
+        self.artists = artists;
+      });
+    },
+  },
+  watch: {
+    selectedCountry(){
+      this.refreshArtists()
+    },
   }
 }
 </script>
 
 <style lang="stylus">
+  *
+    box-sizing: border-box
+
   #app
     font-family 'Avenir', Helvetica, Arial, sans-serif
     -webkit-font-smoothing antialiased
