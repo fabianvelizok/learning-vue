@@ -15,52 +15,52 @@
 </template>
 
 <script>
-import getArtists from './api';
+  import getArtists from './api';
 
-// Components
-import Artist from './components/Artist.vue';
-import Spinner from './components/Spinner.vue';
+  // Components
+  import Artist from './components/Artist.vue';
+  import Spinner from './components/Spinner.vue';
 
-export default {
-  name: 'app',
-  data () {
-    return {
-      loading: false,
-      artists: [],
-      countries: [
-        { name: 'Argentina', value: 'argentina'},
-        { name: 'Colombia', value: 'colombia'},
-        { name: 'España', value: 'spain'},
-      ],
-      selectedCountry: 'argentina',
+  export default {
+    name: 'app',
+    data () {
+      return {
+        loading: false,
+        artists: [],
+        countries: [
+          { name: 'Argentina', value: 'argentina'},
+          { name: 'Colombia', value: 'colombia'},
+          { name: 'España', value: 'spain'},
+        ],
+        selectedCountry: 'argentina',
+      }
+    },
+    components: {
+      Artist,
+      Spinner,
+    },
+    mounted () {
+      this.refreshArtists();
+    },
+    methods: {
+      refreshArtists() {
+        let self = this;
+
+        self.artists = [];
+        self.loading = true;
+
+        getArtists(this.selectedCountry)
+          .then(artists => self.artists = artists)
+          .catch(error => console.error(error))
+          .finally(() => self.loading = false );
+      },
+    },
+    watch: {
+      selectedCountry() {
+        this.refreshArtists();
+      },
     }
-  },
-  components: {
-    Artist,
-    Spinner,
-  },
-  mounted () {
-    this.refreshArtists();
-  },
-  methods: {
-    refreshArtists() {
-      let self = this;
-
-      self.artists = [];
-      self.loading = true;
-
-      getArtists(this.selectedCountry)
-        .then(artists => self.artists = artists)
-        .catch(error => console.error(error))
-        .finally(() => self.loading = false );
-    },
-  },
-  watch: {
-    selectedCountry(){
-      this.refreshArtists()
-    },
   }
-}
 </script>
 
 <style lang="stylus">

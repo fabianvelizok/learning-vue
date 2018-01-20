@@ -8,12 +8,10 @@
 </template>
 
 <script>
-
-export default {
-  name: 'artist',
-  props: ['artist'],
-}
-
+  export default {
+    name: 'artist',
+    props: ['artist'],
+  }
 </script>
 
 <style lang="stylus" scoped>
@@ -25,5 +23,4 @@ export default {
 
     .artist-container
       border: 1px solid #cfcfcf
-
 </style>

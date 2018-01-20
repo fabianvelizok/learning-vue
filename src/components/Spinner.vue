@@ -6,11 +6,9 @@
 </template>
 
 <script>
-
-export default {
-  name: 'spinner',
-}
-
+  export default {
+    name: 'spinner',
+  }
 </script>
 
 <style lang="stylus" scoped>
@@ -49,5 +47,4 @@ export default {
   40%
     -webkit-transform: scale(1.0)
     transform: scale(1.0)
-
 </style>
